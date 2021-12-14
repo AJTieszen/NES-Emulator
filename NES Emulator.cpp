@@ -11,4 +11,6 @@ int main()
 	MemMap* mem = new MemMap; // creates mem on heap
 
 	cpu.debug_printStatus();
+
+	delete mem;
 }
