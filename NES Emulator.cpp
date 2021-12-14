@@ -5,13 +5,11 @@
 
 using namespace std;
 
-static MemMap* mem = new MemMap; // creates mem on heap
-
 int main()
 {
 	CPU cpu;
+	MemMap& mem = MemMap::getInstance();
+	mem.write(3, 'e');
 
 	cpu.debug_printStatus();
-
-	delete mem;
 }

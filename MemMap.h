@@ -2,12 +2,22 @@
 
 class MemMap {
 private:
+	// Singleton Conversion -> make accessible from any class
+	MemMap() {}
+
+	// Data
 	uint8_t ram [0x0800]; // 2k RAM
 	uint8_t ppu [0x0008]; // PPU (video chip) control registers
 	uint8_t apu [0x0020]; // APU (sound chip) and IO registers
 	uint8_t crt [0xbfe0]; // Cartridge ROM, RAM, and memory mappers
 
 public:
+	// Singleton Conversion -> make accessible from any class
+	static MemMap& getInstance() {
+		static MemMap instance;
+		return instance;
+	}
+
 	uint8_t read(uint16_t addr) {
 		if (addr <= 0x0fff) return ram[addr % 0x0800];
 		else if (addr <= 0x3fff) return ppu[(addr - 0x2000) % 0x0008];

@@ -1,10 +1,14 @@
 #pragma once
+#include "MemMap.h"
 
 class CPU {
 private:
 	// Registers
 	uint8_t a = 0, x = 0, y = 0, s = 0, sp = 0;	// Accumulator, X Index, Y Index, Status (flags), Stack Pointer
 	uint16_t pc = 0;							// Program Counter
+
+	// Memory Access
+	MemMap& mem = MemMap::getInstance();
 
 	// Will be used to synchronize with other components
 	unsigned int clock = 0;
@@ -28,6 +32,7 @@ private:
 public:
 	void debug_printStatus() {
 		printf("A: %02x, X: %02x, Y: %02x, S: %02x, SP: %02x, PC: %0004x \n Clock Cycle: %d \n", a, x, y, s, sp, pc, clock);
+		std::cout << mem.read(3) << "\n";
 	}
 
 	// Memory Instructions:
