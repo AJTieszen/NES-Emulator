@@ -5,10 +5,11 @@
 
 using namespace std;
 
+static MemMap* mem = new MemMap; // creates mem on heap
+
 int main()
 {
 	CPU cpu;
-	MemMap* mem = new MemMap; // creates mem on heap
 
 	cpu.debug_printStatus();
 
