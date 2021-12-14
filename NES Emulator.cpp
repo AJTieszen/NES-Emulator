@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
 	CPU cpu;
-	MemMap mem;
+	MemMap* mem = new MemMap; // creates mem on heap
 
 	cpu.debug_printStatus();
 }
