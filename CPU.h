@@ -30,7 +30,7 @@ public:
 		printf("A: %02x, X: %02x, Y: %02x, S: %02x, SP: %02x, PC: %0004x \n Clock Cycle: %d \n", a, x, y, s, sp, pc, clock);
 	}
 
-	// Immediate Mode Instructions:
+	// Memory Instructions:
 	void adc_imm(uint8_t value) {	// Opcode 69
 		// detect carry
 		if (a + value > 0xff) setFlag(CARRY);
@@ -174,7 +174,7 @@ public:
 		clock += 2;
 	}
 
-	// Accumulator Mode Instructions
+	// Accumulator Instructions
 
 	void asl_acc() { // Opcode 0a
 		// detect carry
@@ -214,8 +214,8 @@ public:
 		clock += 2;
 	}
 
-	// Implied Mode Instructions
-	void clc_imp() { // Opcode 18
+	// Register Instructions
+	void clc_reg() { // Opcode 18
 		clearFlag(CARRY);
 
 		// Update cycle and PC
@@ -223,7 +223,7 @@ public:
 		pc += 1;
 	}
 
-	void cli_imp() { // Opcode 58
+	void cli_reg() { // Opcode 58
 		// Clear
 		clearFlag(INTERRUPT);
 
@@ -232,89 +232,89 @@ public:
 		pc += 1;
 	}
 
-	void dex_imp() { // Opcode ca
+	void dex_reg() { // Opcode ca
 		x--;
 
 		pc++;
 		clock += 2;
 	}
 
-	void dey_imp() { // Opcode ca
+	void dey_reg() { // Opcode ca
 		y--;
 
 		pc++;
 		clock += 2;
 	}
 
-	void inx_imp() { // Opcode e8
+	void inx_reg() { // Opcode e8
 		x++;
 
 		pc++;
 		clock += 2;
 	}
 
-	void iny_imp() { // Opcode c8
+	void iny_reg() { // Opcode c8
 		y++;
 
 		pc++;
 		clock += 2;
 	}
 
-	void nop_imp() { // Opcode ea
+	void nop_reg() { // Opcode ea
 		pc++;
 		clock += 2;
 	}
 
-	void sec_imp() { // Opcode 38
+	void sec_reg() { // Opcode 38
 		setFlag(CARRY);
 
 		pc++;
 		clock += 2;
 	}
 
-	void sei_imp() { // Opcode 38
+	void sei_reg() { // Opcode 38
 		setFlag(INTERRUPT);
 
 		pc++;
 		clock += 2;
 	}
 
-	void tax_imp() { // Opcode aa
+	void tax_reg() { // Opcode aa
 		x = a;
 
 		pc++;
 		clock += 2;
 	}
 
-	void tay_imp() { // Opcode a8
+	void tay_reg() { // Opcode a8
 		y = a;
 
 		pc++;
 		clock += 2;
 	}
 
-	void tsx_imp() { // Opcode ba
+	void tsx_reg() { // Opcode ba
 		x = s;
 
 		pc++;
 		clock += 2;
 	}
 
-	void txa_imp() { // Opcode 8a
+	void txa_reg() { // Opcode 8a
 		a = x;
 
 		pc++;
 		clock += 2;
 	}
 
-	void txs_imp() { // Opcode 9a
+	void txs_reg() { // Opcode 9a
 		s = x;
 
 		pc++;
 		clock += 2;
 	}
 
-	void tya_imp() { // Opcode 98
+	void tya_reg() { // Opcode 98
 		a = y;
 
 		pc++;
